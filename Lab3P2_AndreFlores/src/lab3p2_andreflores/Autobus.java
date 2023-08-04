@@ -15,5 +15,10 @@ public class Autobus extends Vehiculo {
         this.numEjes = numEjes;
         this.longitud = longitud;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Autobus{" + "capacidadPasajeros=" + capacidadPasajeros + ", numEjes=" + numEjes + ", longitud=" + longitud + '}';
+    }
+
 }

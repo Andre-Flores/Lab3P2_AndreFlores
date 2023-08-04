@@ -27,4 +27,9 @@ public class Vehiculo {
         return format.format(Anio);
     }
 
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "numeroPlaca=" + numeroPlaca + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Tipo=" + Tipo + ", color=" + color + ", Anio=" + Anio + '}';
+    }
+
 }

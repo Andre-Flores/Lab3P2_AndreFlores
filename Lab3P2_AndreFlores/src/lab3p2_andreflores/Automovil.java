@@ -22,4 +22,9 @@ public class Automovil extends Vehiculo {
         this.numAsientos = numAsientos;
     }
 
+    @Override
+    public String toString() {
+        return "Automovil{" + "tipoCombustible=" + tipoCombustible + ", numPuertas=" + numPuertas + ", tipoTransmision=" + tipoTransmision + ", numAsientos=" + numAsientos + '}';
+    }
+
 }

@@ -1,10 +1,10 @@
-
 package lab3p2_andreflores;
 
 import java.awt.Color;
 import java.util.Date;
 
 public class Motocicleta extends Vehiculo {
+
     int velocidadMax;
     int peso;
     int consumoCombustible;
@@ -15,5 +15,10 @@ public class Motocicleta extends Vehiculo {
         this.peso = peso;
         this.consumoCombustible = consumoCombustible;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Motocicleta{" + "velocidadMax=" + velocidadMax + ", peso=" + peso + ", consumoCombustible=" + consumoCombustible + '}';
+    }
+
 }

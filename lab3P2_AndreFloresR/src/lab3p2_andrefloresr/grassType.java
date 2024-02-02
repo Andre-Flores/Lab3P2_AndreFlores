@@ -11,8 +11,8 @@ public class grassType extends Pokemon {
     private String habitat;
     private int dominioPlantas;
 
-    public grassType(String nombre, int numPokedex, String naturaleza, boolean atrapado, pokeBall pokebola) {
-        super(nombre, numPokedex, naturaleza, atrapado);
+    public grassType(String nombre, int numPokedex, String naturaleza, boolean atrapado) {
+        super(nombre, numPokedex, naturaleza, atrapado = false);
     }
 
     public String getHabitat() {

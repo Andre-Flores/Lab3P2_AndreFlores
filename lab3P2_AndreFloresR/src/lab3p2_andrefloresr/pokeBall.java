@@ -51,4 +51,10 @@ public class pokeBall {
     private boolean validarRateAtrapar(int rateAtrapar) {
         return rateAtrapar >= 1 && rateAtrapar <= 3;
     }
+
+    @Override
+    public String toString() {
+        return "pokeBall{" + "color=" + color + ", numSerie=" + numSerie + ", rateAtrapar=" + rateAtrapar + '}';
+    }
+
 }

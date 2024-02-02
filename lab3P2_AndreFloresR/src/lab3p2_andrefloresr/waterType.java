@@ -9,8 +9,8 @@ public class waterType extends Pokemon {
     private boolean vivirFuera;
     private int rapidezNadar;
 
-    public waterType(boolean vivirFuera, int rapidezNadar, String nombre, int numPokedex, String naturaleza, boolean atrapado, pokeBall pokebola) {
-        super(nombre, numPokedex, naturaleza, atrapado, pokebola);
+    public waterType(boolean vivirFuera, int rapidezNadar, String nombre, int numPokedex, String naturaleza, boolean atrapado) {
+        super(nombre, numPokedex, naturaleza, atrapado = false);
         this.vivirFuera = vivirFuera;
         this.rapidezNadar = rapidezNadar;
     }

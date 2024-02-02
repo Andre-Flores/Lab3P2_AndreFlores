@@ -81,5 +81,6 @@ public class Pokemon {
     public String toString() {
         return "Pokemon{" + "nombre=" + nombre + ", numPokedex=" + numPokedex + ", naturaleza=" + naturaleza + ", atrapado=" + atrapado + ", pokebola=" + pokebola + '}';
     }
+    
 
 }

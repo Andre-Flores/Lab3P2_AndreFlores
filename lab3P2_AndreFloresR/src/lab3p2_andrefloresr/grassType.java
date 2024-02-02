@@ -8,11 +8,11 @@ import java.util.Scanner;
  */
 public class grassType extends Pokemon {
 
-    String habitat;
-    int dominioPlantas;
+    private String habitat;
+    private int dominioPlantas;
 
     public grassType(String nombre, int numPokedex, String naturaleza, boolean atrapado, pokeBall pokebola) {
-        super(nombre, numPokedex, naturaleza, atrapado, pokebola);
+        super(nombre, numPokedex, naturaleza, atrapado);
     }
 
     public String getHabitat() {

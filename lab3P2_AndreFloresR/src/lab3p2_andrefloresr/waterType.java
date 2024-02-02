@@ -1,4 +1,3 @@
-
 package lab3p2_andrefloresr;
 
 /**
@@ -6,8 +5,9 @@ package lab3p2_andrefloresr;
  * @author andre
  */
 public class waterType extends Pokemon {
-   boolean vivirFuera;
-   int rapidezNadar;
+
+    private boolean vivirFuera;
+    private int rapidezNadar;
 
     public waterType(boolean vivirFuera, int rapidezNadar, String nombre, int numPokedex, String naturaleza, boolean atrapado, pokeBall pokebola) {
         super(nombre, numPokedex, naturaleza, atrapado, pokebola);
@@ -35,7 +35,5 @@ public class waterType extends Pokemon {
     public String toString() {
         return "waterType{" + "vivirFuera=" + vivirFuera + ", rapidezNadar=" + rapidezNadar + '}';
     }
-   
-    
-    
+
 }

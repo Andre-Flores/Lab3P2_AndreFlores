@@ -28,7 +28,7 @@ public class Lab3P2_AndreFloresR {
                     crearPokemon(entrada, listaPokemon);
                     break;
                 case 2:
-
+                    crearPokeball(entrada, listaPokebolas);
                     break;
                 case 3:
 
@@ -109,5 +109,31 @@ public class Lab3P2_AndreFloresR {
         return naturaleza.equalsIgnoreCase("timido") || naturaleza.equalsIgnoreCase("energetico") || naturaleza.equalsIgnoreCase("misterioso");
     }
 
-    
+    private static void crearPokeball(Scanner entrada, ArrayList<pokeBall> listaPokebolas) {
+        System.out.println("ingrese el color");
+        entrada.next();
+        String color = entrada.nextLine();
+        System.out.println("ingrese el numero de serie");
+        int numSerie = entrada.nextInt();
+        int rateAtrapar;
+        while (true) {
+            System.out.println("Ingrese la eficiencia de atrapado de la Pokebola (entre 1 y 3):");
+            rateAtrapar = entrada.nextInt();
+
+            if (validarRateAtrapar(rateAtrapar)) {
+                break;
+            } else {
+                System.out.println("Valor no valido. Intente de nuevo.");
+            }
+        }
+
+        pokeBall nuevaPokebola = new pokeBall(color, numSerie, rateAtrapar);
+        listaPokebolas.add(nuevaPokebola);
+
+        System.out.println("Pokebola creada y agregada a la lista exitosamente.");
+    }
+
+    private static boolean validarRateAtrapar(int rateAtrapar) {
+        return rateAtrapar >= 1 && rateAtrapar <= 3;
+    }
 }

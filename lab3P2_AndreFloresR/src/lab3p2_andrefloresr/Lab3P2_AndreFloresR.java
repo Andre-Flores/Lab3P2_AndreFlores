@@ -31,10 +31,10 @@ public class Lab3P2_AndreFloresR {
                     crearPokeball(entrada, listaPokebolas);
                     break;
                 case 3:
-
+                    listarPokemon(listaPokemon);
                     break;
                 case 4:
-
+                    eliminarPokemon(entrada, listaPokemon);
                     break;
                 case 5:
                     break;
@@ -54,7 +54,7 @@ public class Lab3P2_AndreFloresR {
 
     private static void crearPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon) {
         System.out.println("ingrese el nombre del pokemon");
-        entrada.next();
+        entrada.nextLine();
         String nombre = entrada.nextLine();
         System.out.println("ingrese el numero de entrada en la pokedex");
         int numPokedex = entrada.nextInt();
@@ -111,7 +111,7 @@ public class Lab3P2_AndreFloresR {
 
     private static void crearPokeball(Scanner entrada, ArrayList<pokeBall> listaPokebolas) {
         System.out.println("ingrese el color");
-        entrada.next();
+        entrada.nextLine();
         String color = entrada.nextLine();
         System.out.println("ingrese el numero de serie");
         int numSerie = entrada.nextInt();
@@ -136,4 +136,16 @@ public class Lab3P2_AndreFloresR {
     private static boolean validarRateAtrapar(int rateAtrapar) {
         return rateAtrapar >= 1 && rateAtrapar <= 3;
     }
+
+    private static void listarPokemon(ArrayList<Pokemon> listaPokemon) {
+        if (listaPokemon.isEmpty()) {
+            System.out.println("No hay Pokemon en la lista.");
+        } else {
+            System.out.println("Lista de Pokemon:");
+            for (Pokemon pokemon : listaPokemon) {
+                System.out.println(pokemon);
+            }
+        }
+    }
+
 }

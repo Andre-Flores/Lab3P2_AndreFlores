@@ -64,7 +64,7 @@ public class Pokemon {
     }
 
     public void metAtrapar(pokeBall pokebola) {
-        atrapado = true;
+        atrapado = false;
         this.pokebola = pokebola;
     }
 
@@ -78,7 +78,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "nombre=" + nombre + ", numPokedex=" + numPokedex + ", naturaleza=" + naturaleza + ", atrapado=" + atrapado + ", pokebola=" + pokebola + '}';
+        return "Pokemon:" + "nombre=" + nombre + ", numPokedex=" + numPokedex + ", naturaleza=" + naturaleza + ", atrapado=" + atrapado + ", pokebola=" + pokebola + '}';
     }
     
 

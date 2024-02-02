@@ -38,7 +38,7 @@ public class grassType extends Pokemon {
 
     @Override
     public String toString() {
-        return "grassType{" + "habitat=" + habitat + ", dominioPlantas=" + dominioPlantas + '}';
+        return super.toString()+"grassType{" + "habitat=" + habitat + ", dominioPlantas=" + dominioPlantas + '}';
     }
 
 }

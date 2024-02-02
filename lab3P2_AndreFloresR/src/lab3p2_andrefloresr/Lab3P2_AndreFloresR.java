@@ -148,4 +148,63 @@ public class Lab3P2_AndreFloresR {
         }
     }
 
+    private static void eliminarPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon) {
+        System.out.println("Seleccione el tipo de Pokemon que desea eliminar:");
+        System.out.println("1: FireType");
+        System.out.println("2: WaterType");
+        System.out.println("3: GrassType");
+        int tipoPokemon = entrada.nextInt();
+
+        ArrayList<Pokemon> pokemonTipoElegido = new ArrayList<>();
+
+        switch (tipoPokemon) {
+            case 1:
+                pokemonTipoElegido = obtenerPokemonPorTipo(listaPokemon, "fire");
+                break;
+            case 2:
+                pokemonTipoElegido = obtenerPokemonPorTipo(listaPokemon, "water");
+                break;
+            case 3:
+                pokemonTipoElegido = obtenerPokemonPorTipo(listaPokemon, "grass");
+                break;
+            default:
+                System.out.println("Tipo de Pokemon no valido.");
+                return;
+        }
+
+        if (pokemonTipoElegido.isEmpty()) {
+            System.out.println("No hay Pokemon del tipo seleccionado para eliminar.");
+        } else {
+            System.out.println("Lista de Pokemon del tipo seleccionado:");
+            for (int i = 0; i < pokemonTipoElegido.size(); i++) {
+                System.out.println(i + ": " + pokemonTipoElegido.get(i));
+            }
+
+            System.out.println("Seleccione el indice del Pokemon que desea eliminar:");
+            int indiceEliminar = entrada.nextInt();
+
+            if (indiceEliminar >= 0 && indiceEliminar < pokemonTipoElegido.size()) {
+                Pokemon pokemonEliminar = pokemonTipoElegido.get(indiceEliminar);
+                listaPokemon.remove(pokemonEliminar);
+                System.out.println("Pokemon eliminado exitosamente.");
+            } else {
+                System.out.println("indice no valido. No se elimino ningun Pokemon.");
+            }
+        }
+    }
+
+    private static ArrayList<Pokemon> obtenerPokemonPorTipo(ArrayList<Pokemon> listaPokemon, String tipo) {
+        ArrayList<Pokemon> pokemonTipoElegido = new ArrayList<>();
+        for (Pokemon pokemon : listaPokemon) {
+            if (pokemon instanceof fireType && tipo.equals("fire")) {
+                pokemonTipoElegido.add(pokemon);
+            } else if (pokemon instanceof waterType && tipo.equals("water")) {
+                pokemonTipoElegido.add(pokemon);
+            } else if (pokemon instanceof grassType && tipo.equals("grass")) {
+                pokemonTipoElegido.add(pokemon);
+            }
+        }
+        return pokemonTipoElegido;
+    }
+
 }

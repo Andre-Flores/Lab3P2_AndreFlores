@@ -9,5 +9,7 @@ package lab3p2_andrefloresr;
  * @author andre
  */
 public class pokeBall {
-    
+    String color; 
+    int numSerie;
+    int rateAtrapar;
 }

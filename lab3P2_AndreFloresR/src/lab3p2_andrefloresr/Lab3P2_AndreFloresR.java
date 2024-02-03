@@ -37,6 +37,7 @@ public class Lab3P2_AndreFloresR {
                     eliminarPokemon(entrada, listaPokemon);
                     break;
                 case 5:
+                    capturarPokemon(entrada, listaPokemon, listaPokebolas);
                     break;
                 case 6:
 
@@ -206,5 +207,70 @@ public class Lab3P2_AndreFloresR {
         }
         return pokemonTipoElegido;
     }
+private static void capturarPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon, ArrayList<pokeBall> listaPokebolas) {
+    if (listaPokebolas.isEmpty()) {
+        System.out.println("No hay Pokebolas disponibles para capturar Pokemon.");
+        return;
+    }
+
+    System.out.println("Seleccione una Pokebola para intentar capturar un Pokemon:");
+    for (int i = 0; i < listaPokebolas.size(); i++) {
+        System.out.println(i + ": " + listaPokebolas.get(i));
+    }
+
+    int indicePokebola = entrada.nextInt();
+
+    if (indicePokebola < 0 || indicePokebola >= listaPokebolas.size()) {
+        System.out.println("Indice de Pokebola no valido.");
+        return;
+    }
+
+    pokeBall pokebolaElegida = listaPokebolas.get(indicePokebola);
+
+    if (pokebolaElegida.getRateAtrapar() == 0) {
+        System.out.println("La eficiencia de atrapado de la Pokebola seleccionada es 0. No se puede utilizar.");
+        return;
+    }
+
+    ArrayList<Pokemon> pokemonNoAtrapados = obtenerPokemonNoAtrapados(listaPokemon);
+
+    if (pokemonNoAtrapados.isEmpty()) {
+        System.out.println("No hay Pokemon disponibles para capturar.");
+        return;
+    }
+
+    Pokemon pokemonAtrapar = pokemonNoAtrapados.get((int) (Math.random() * pokemonNoAtrapados.size()));
+
+    System.out.println("Un Pokemon ha aparecido: " + pokemonAtrapar.getNombre());
+    System.out.println("¿Desea utilizar la Pokebola para intentar capturarlo? (1: Si / 2: Huir)");
+
+    int opcionCaptura = entrada.nextInt();
+
+    if (opcionCaptura == 1) {
+        double chanceAtrapar = (double) pokebolaElegida.getRateAtrapar() / 3;
+        System.out.println(chanceAtrapar);
+        if (Math.random() < chanceAtrapar) {
+            System.out.println("El Pokemon " + pokemonAtrapar.getNombre() + " ha sido capturado.");
+            pokemonAtrapar.setAtrapado(true);
+            pokemonAtrapar.setPokebola(pokebolaElegida);
+            listaPokebolas.remove(pokebolaElegida);
+        } else {
+            System.out.println("No se pudo atrapar al Pokemon " + pokemonAtrapar.getNombre() + ".");
+            listaPokebolas.remove(pokebolaElegida);
+        }
+    } else {
+        System.out.println("Has huido del encuentro.");
+    }
+}
+
+private static ArrayList<Pokemon> obtenerPokemonNoAtrapados(ArrayList<Pokemon> listaPokemon) {
+    ArrayList<Pokemon> pokemonNoAtrapados = new ArrayList<>();
+    for (Pokemon pokemon : listaPokemon) {
+        if (!pokemon.isAtrapado()) {
+            pokemonNoAtrapados.add(pokemon);
+        }
+    }
+    return pokemonNoAtrapados;
+}
 
 }

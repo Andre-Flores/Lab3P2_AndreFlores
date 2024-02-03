@@ -85,7 +85,7 @@ public class Lab3P2_AndreFloresR {
                 nuevoPokemon = new fireType(potenciaLlamas, nombre, numPokedex, naturaleza, false);
                 break;
             case 2:
-                System.out.print("¿Puede vivir fuera del agua? (true/false): ");
+                System.out.print("Puede vivir fuera del agua? (true/false): ");
                 boolean puedeVivirFueraAgua = entrada.nextBoolean();
                 System.out.print("Ingrese la rapidez al nadar del Pokemon WaterType: ");
                 int rapidezNadar = entrada.nextInt();
@@ -242,13 +242,12 @@ private static void capturarPokemon(Scanner entrada, ArrayList<Pokemon> listaPok
     Pokemon pokemonAtrapar = pokemonNoAtrapados.get((int) (Math.random() * pokemonNoAtrapados.size()));
 
     System.out.println("Un Pokemon ha aparecido: " + pokemonAtrapar.getNombre());
-    System.out.println("¿Desea utilizar la Pokebola para intentar capturarlo? (1: Si / 2: Huir)");
+    System.out.println("Desea utilizar la Pokebola para intentar capturarlo? (1: Si / 2: Huir)");
 
     int opcionCaptura = entrada.nextInt();
 
     if (opcionCaptura == 1) {
         double chanceAtrapar = (double) pokebolaElegida.getRateAtrapar() / 3;
-        System.out.println(chanceAtrapar);
         if (Math.random() < chanceAtrapar) {
             System.out.println("El Pokemon " + pokemonAtrapar.getNombre() + " ha sido capturado.");
             pokemonAtrapar.setAtrapado(true);

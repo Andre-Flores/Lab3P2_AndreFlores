@@ -28,17 +28,13 @@ public class grassType extends Pokemon {
     }
 
     public void setDominioPlantas(int dominioPlantas) {
-        Scanner entrada = new Scanner(System.in);
-        while (dominioPlantas <= 0 || dominioPlantas >= 100) {
-            System.out.println("numero invalido, ingrese un numero entre 0 y 100.");
-            dominioPlantas = entrada.nextInt();
-        }
+
         this.dominioPlantas = dominioPlantas;
     }
 
     @Override
     public String toString() {
-        return super.toString()+"grassType{" + "habitat=" + habitat + ", dominioPlantas=" + dominioPlantas + '}';
+        return super.toString() + "grassType{" + "habitat=" + habitat + ", dominioPlantas=" + dominioPlantas + '}';
     }
 
 }

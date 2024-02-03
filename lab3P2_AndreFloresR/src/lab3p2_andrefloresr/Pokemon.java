@@ -42,18 +42,9 @@ public class Pokemon {
     }
 
     public void setNaturaleza(String naturaleza) {
-        Scanner entrada = new Scanner(System.in);
-        while (!validarNaturaleza(naturaleza)) {
-            System.out.println("ingrese la naturaleza bien: (timido, energetico o misterioso.");
-            naturaleza = entrada.nextLine();
-        }
         this.naturaleza = naturaleza;
-
     }
 
-    protected boolean validarNaturaleza(String naturaleza) {
-        return naturaleza.equalsIgnoreCase("timido") || naturaleza.equalsIgnoreCase("energetico") || naturaleza.equalsIgnoreCase("misterioso");
-    }
 
     public boolean isAtrapado() {
         return atrapado;

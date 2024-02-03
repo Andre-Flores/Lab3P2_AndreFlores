@@ -28,7 +28,6 @@ public class grassType extends Pokemon {
     }
 
     public void setDominioPlantas(int dominioPlantas) {
-
         this.dominioPlantas = dominioPlantas;
     }
 

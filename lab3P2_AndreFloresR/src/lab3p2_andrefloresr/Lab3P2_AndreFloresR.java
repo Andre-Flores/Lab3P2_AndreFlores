@@ -40,7 +40,7 @@ public class Lab3P2_AndreFloresR {
                     capturarPokemon(entrada, listaPokemon, listaPokebolas);
                     break;
                 case 6:
-
+                    modificarPokemon(entrada, listaPokemon);
                     break;
                 case 7:
                     System.out.println("saliendo");
@@ -207,69 +207,168 @@ public class Lab3P2_AndreFloresR {
         }
         return pokemonTipoElegido;
     }
-private static void capturarPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon, ArrayList<pokeBall> listaPokebolas) {
-    if (listaPokebolas.isEmpty()) {
-        System.out.println("No hay Pokebolas disponibles para capturar Pokemon.");
-        return;
-    }
 
-    System.out.println("Seleccione una Pokebola para intentar capturar un Pokemon:");
-    for (int i = 0; i < listaPokebolas.size(); i++) {
-        System.out.println(i + ": " + listaPokebolas.get(i));
-    }
+    private static void capturarPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon, ArrayList<pokeBall> listaPokebolas) {
+        if (listaPokebolas.isEmpty()) {
+            System.out.println("No hay Pokebolas disponibles para capturar Pokemon.");
+            return;
+        }
 
-    int indicePokebola = entrada.nextInt();
+        System.out.println("Seleccione una Pokebola para intentar capturar un Pokemon:");
+        for (int i = 0; i < listaPokebolas.size(); i++) {
+            System.out.println(i + ": " + listaPokebolas.get(i));
+        }
 
-    if (indicePokebola < 0 || indicePokebola >= listaPokebolas.size()) {
-        System.out.println("Indice de Pokebola no valido.");
-        return;
-    }
+        int indicePokebola = entrada.nextInt();
 
-    pokeBall pokebolaElegida = listaPokebolas.get(indicePokebola);
+        if (indicePokebola < 0 || indicePokebola >= listaPokebolas.size()) {
+            System.out.println("Indice de Pokebola no valido.");
+            return;
+        }
 
-    if (pokebolaElegida.getRateAtrapar() == 0) {
-        System.out.println("La eficiencia de atrapado de la Pokebola seleccionada es 0. No se puede utilizar.");
-        return;
-    }
+        pokeBall pokebolaElegida = listaPokebolas.get(indicePokebola);
 
-    ArrayList<Pokemon> pokemonNoAtrapados = obtenerPokemonNoAtrapados(listaPokemon);
+        if (pokebolaElegida.getRateAtrapar() == 0) {
+            System.out.println("La eficiencia de atrapado de la Pokebola seleccionada es 0. No se puede utilizar.");
+            return;
+        }
 
-    if (pokemonNoAtrapados.isEmpty()) {
-        System.out.println("No hay Pokemon disponibles para capturar.");
-        return;
-    }
+        ArrayList<Pokemon> pokemonNoAtrapados = obtenerPokemonNoAtrapados(listaPokemon);
 
-    Pokemon pokemonAtrapar = pokemonNoAtrapados.get((int) (Math.random() * pokemonNoAtrapados.size()));
+        if (pokemonNoAtrapados.isEmpty()) {
+            System.out.println("No hay Pokemon disponibles para capturar.");
+            return;
+        }
 
-    System.out.println("Un Pokemon ha aparecido: " + pokemonAtrapar.getNombre());
-    System.out.println("Desea utilizar la Pokebola para intentar capturarlo? (1: Si / 2: Huir)");
+        Pokemon pokemonAtrapar = pokemonNoAtrapados.get((int) (Math.random() * pokemonNoAtrapados.size()));
 
-    int opcionCaptura = entrada.nextInt();
+        System.out.println("Un Pokemon ha aparecido: " + pokemonAtrapar.getNombre());
+        System.out.println("Desea utilizar la Pokebola para intentar capturarlo? (1: Si / 2: Huir)");
 
-    if (opcionCaptura == 1) {
-        double chanceAtrapar = (double) pokebolaElegida.getRateAtrapar() / 3;
-        if (Math.random() < chanceAtrapar) {
-            System.out.println("El Pokemon " + pokemonAtrapar.getNombre() + " ha sido capturado.");
-            pokemonAtrapar.setAtrapado(true);
-            pokemonAtrapar.setPokebola(pokebolaElegida);
-            listaPokebolas.remove(pokebolaElegida);
+        int opcionCaptura = entrada.nextInt();
+
+        if (opcionCaptura == 1) {
+            double chanceAtrapar = (double) pokebolaElegida.getRateAtrapar() / 3;
+
+            if (Math.random() < chanceAtrapar) {
+                System.out.println("El Pokemon " + pokemonAtrapar.getNombre() + " ha sido capturado.");
+                pokemonAtrapar.setAtrapado(true);
+                pokemonAtrapar.setPokebola(pokebolaElegida);
+                listaPokebolas.remove(pokebolaElegida);
+            } else {
+                System.out.println("No se pudo atrapar al Pokemon " + pokemonAtrapar.getNombre() + ".");
+                listaPokebolas.remove(pokebolaElegida);
+            }
         } else {
-            System.out.println("No se pudo atrapar al Pokemon " + pokemonAtrapar.getNombre() + ".");
-            listaPokebolas.remove(pokebolaElegida);
-        }
-    } else {
-        System.out.println("Has huido del encuentro.");
-    }
-}
-
-private static ArrayList<Pokemon> obtenerPokemonNoAtrapados(ArrayList<Pokemon> listaPokemon) {
-    ArrayList<Pokemon> pokemonNoAtrapados = new ArrayList<>();
-    for (Pokemon pokemon : listaPokemon) {
-        if (!pokemon.isAtrapado()) {
-            pokemonNoAtrapados.add(pokemon);
+            System.out.println("Has huido del encuentro.");
         }
     }
-    return pokemonNoAtrapados;
-}
 
+    private static ArrayList<Pokemon> obtenerPokemonNoAtrapados(ArrayList<Pokemon> listaPokemon) {
+        ArrayList<Pokemon> pokemonNoAtrapados = new ArrayList<>();
+        for (Pokemon pokemon : listaPokemon) {
+            if (!pokemon.isAtrapado()) {
+                pokemonNoAtrapados.add(pokemon);
+            }
+        }
+        return pokemonNoAtrapados;
+    }
+
+    private static void modificarPokemon(Scanner entrada, ArrayList<Pokemon> listaPokemon) {
+        System.out.println("Seleccione el tipo de Pokemon que desea modificar:");
+        System.out.println("1: FireType");
+        System.out.println("2: WaterType");
+        System.out.println("3: GrassType");
+        int tipoPokemon = entrada.nextInt();
+        ArrayList<Pokemon> pokemonTipoElegido = new ArrayList<>();
+        switch (tipoPokemon) {
+            case 1:
+                pokemonTipoElegido = obtenerPokemonAtrapadosPorTipo(listaPokemon, "fire");
+                break;
+            case 2:
+                pokemonTipoElegido = obtenerPokemonAtrapadosPorTipo(listaPokemon, "water");
+                break;
+            case 3:
+                pokemonTipoElegido = obtenerPokemonAtrapadosPorTipo(listaPokemon, "grass");
+                break;
+            default:
+                System.out.println("Tipo de Pokemon no valido.");
+                return;
+        }
+        if (pokemonTipoElegido.isEmpty()) {
+            System.out.println("No hay Pokemon del tipo seleccionado para modificar.");
+        } else {
+            System.out.println("Lista de Pokemon del tipo seleccionado:");
+            for (int i = 0; i < pokemonTipoElegido.size(); i++) {
+                System.out.println(i + ": " + pokemonTipoElegido.get(i));
+            }
+            System.out.println("Seleccione el indice del Pokemon a modificar:");
+            int indiceModificar = entrada.nextInt();
+            if (indiceModificar >= 0 && indiceModificar < pokemonTipoElegido.size()) {
+                Pokemon pokemonModificar = pokemonTipoElegido.get(indiceModificar);
+                System.out.println("Seleccione que quiere modificar:");
+                System.out.println("1: Nombre");
+                System.out.println("2: Numero de Entrada en la pokedex.");
+                if (pokemonModificar instanceof fireType) {
+                    System.out.println("3: Potencia de llamas.");
+                } else if (pokemonModificar instanceof waterType) {
+                    System.out.println("3: Puede vivir fuera del agua.");
+                } else if (pokemonModificar instanceof grassType) {
+                    System.out.println("3: Habitat.");
+                }
+                int atributoModificar = entrada.nextInt();
+                switch (atributoModificar) {
+                    case 1:
+                        System.out.println("Ingrese el nuevo nombre del Pokemon:");
+                        entrada.nextLine();
+                        String nuevoNombre = entrada.nextLine();
+                        pokemonModificar.setNombre(nuevoNombre);
+                        System.out.println("Nombre modificado.");
+                        break;
+                    case 2:
+                        System.out.println("Ingrese el nuevo numero de entrada en la pokedex:");
+                        int nuevoNumPokedex = entrada.nextInt();
+                        pokemonModificar.setNumPokedex(nuevoNumPokedex);
+                        System.out.println("Numero de Entrada en la pokedex modificado.");
+                        break;
+                    case 3:
+                        if (pokemonModificar instanceof fireType) {
+                            System.out.println("Ingrese la nueva potencia de llamas del Pokemon FireType:");
+                            int nuevapotenciaLlamas = entrada.nextInt();
+                            ((fireType) pokemonModificar).setPotenciaLlamas(nuevapotenciaLlamas);
+                            System.out.println("Potencia de llamas modificada.");
+                        } else if (pokemonModificar instanceof waterType) {
+                            System.out.println("Ingrese si el Pokemon WaterType puede vivir fuera del agua (true/false):");
+                            boolean nuevoVivirFuera = entrada.nextBoolean();
+                            ((waterType) pokemonModificar).setVivirFuera(nuevoVivirFuera);
+                            System.out.println("Puede vivir fuera del agua modificado.");
+                        } else if (pokemonModificar instanceof grassType) {
+                            System.out.println("Ingrese el nuevo habitat del Pokemon GrassType:");
+                            entrada.nextLine();
+                            String nuevoHabitat = entrada.nextLine();
+                            ((grassType) pokemonModificar).setHabitat(nuevoHabitat);
+                            System.out.println("Habitat modificado.");
+                        }
+                        break;
+                    default:
+                        System.out.println("Atributo no valido. No se modifico nada.");
+                        break;
+                }
+            } else {
+                System.out.println("Indice no valido. No pudo nada.");
+            }
+        }
+    }
+
+    private static ArrayList<Pokemon> obtenerPokemonAtrapadosPorTipo(ArrayList<Pokemon> listaPokemon, String tipo) {
+        ArrayList<Pokemon> pokemonTipoElegido = new ArrayList<>();
+        for (Pokemon pokemon : listaPokemon) {
+            if (pokemon.isAtrapado() && ((pokemon instanceof fireType && tipo.equals("fire"))
+                    || (pokemon instanceof waterType && tipo.equals("water"))
+                    || (pokemon instanceof grassType && tipo.equals("grass")))) {
+                pokemonTipoElegido.add(pokemon);
+            }
+        }
+        return pokemonTipoElegido;
+    }
 }

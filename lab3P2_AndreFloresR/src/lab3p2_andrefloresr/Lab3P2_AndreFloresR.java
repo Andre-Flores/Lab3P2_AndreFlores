@@ -369,6 +369,6 @@ public class Lab3P2_AndreFloresR {
                 pokemonTipoElegido.add(pokemon);
             }
         }
-        return pokemonTipoElegido;
+        return pokemonTipoElegido; 
     }
 }
